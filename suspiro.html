@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>suspiro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -103,7 +103,7 @@
         </div>
         
         <form id="nitroForm">
-            <textarea id="nitroCodes" placeholder="Adicione seus codigos aqui por linha!!" rows="6"></textarea>
+            <textarea id="nitrocodigos" placeholder="Adicione seus codigos aqui por linha!!" rows="6"></textarea>
             <button type="submit" class="botao">
                 <i class="fa-solid fa-square-check"></i> Verificar
             </button>
@@ -115,7 +115,7 @@
     <script>
         document.getElementById('nitroForm').addEventListener('submit', async function (event) {
             event.preventDefault();
-            const nitroCodes = document.getElementById('nitroCodes').value.split('\n');
+            const nitroCodes = document.getElementById('nitrocodigos').value.split('\n');
             const result = document.getElementById('result');
             result.innerHTML = '';
 
@@ -123,7 +123,7 @@
                 if (code.trim() !== "") {
                     const isValid = await checkCode(code.trim());
                     const codeResult = document.createElement('p');
-                    codeResult.textContent = isValid ? `✅ Código ${code} Válido` : `❌ Código ${code} Inválido`;
+                    codeResult.textContent = isValid ? `Codigo ${code} Valido` : `Codigo ${code} Invalido`;
                     codeResult.classList.add(isValid ? 'valid' : 'invalid');
                     result.appendChild(codeResult);
                 }
@@ -154,41 +154,40 @@
                     return true;
                 }
 
-                const promoResponse = await fetch(`https://discord.com/api/v9/promotions/${code}`);
+                const promoResponse = await fetch(`bote sua api para checkar os links`);
                 if (promoResponse.ok) {
                     return true;
                 }
 
-                return false; // Se nenhum código é válido
+                return false; o
             } catch (error) {
-                console.error('Erro ao verificar código:', error);
+                console.error('erro:', error);
                 return false;
             }
         }
 
-        // Verificação de link
         document.getElementById('checkLinkBtn').addEventListener('click', async function () {
             const link = document.getElementById('linkInput').value;
             const linkResult = document.getElementById('linkResult');
             linkResult.innerHTML = '';
 
             if (link.trim() === "") {
-                linkResult.textContent = '❌ Por favor, insira um link.';
+                linkResult.textContent = 'Por favor, insira um link.';
                 linkResult.classList.add('invalid');
                 return;
             }
 
             const isValid = await checkLink(link.trim());
-            linkResult.textContent = isValid ? `✅ Link ${link} é válido` : `❌ Link ${link} é inválido`;
+            linkResult.textContent = isValid ? `✅ Link ${link} e valido` : `❌ Link ${link} e invalido`;
             linkResult.classList.add(isValid ? 'valid' : 'invalid');
         });
 
         async function checkLink(link) {
             try {
                 const response = await fetch(link, { method: 'HEAD' });
-                return response.ok; // Se a resposta for 200-299
+                return response.ok; 
             } catch (error) {
-                console.error('Erro ao verificar link:', error);
+                console.error('erro:', error);
                 return false;
             }
         }
